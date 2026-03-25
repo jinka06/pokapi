@@ -6,8 +6,8 @@ const PORT = 8000
 const app = express()
 
 app.use('/api', apiRouter)
-app.use('/', (req, res) => {
-    res.send('Welcome to the Pokémon API! Use /api to access the endpoints.')
+app.use((req, res) => {
+    res.status(404).json({ error: 'Welcome to the Pokémon API! Use /api to access the endpoints.' })
 })
 
 app.listen(PORT, () => {
