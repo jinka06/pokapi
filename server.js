@@ -1,17 +1,12 @@
 import express from 'express'
+import { pokemon } from './data/data.js'
 
 const PORT = 8000
 
 const app = express()
 
-const pok = {
-    type: "Fire",
-    name: "Charmander",
-    level: 5
-}
-
-app.get('/', (req, res) => {
-    res.json(pok)
+app.get('/api', (req, res) => {
+    res.json(pokemon)
 })
 
 app.listen(PORT, () => {
