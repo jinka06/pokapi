@@ -32,6 +32,12 @@ app.get('/cards', (req, res) => {
 app.get('/:category/:item', (req, res) => {
     const { category, item } = req.params
     let filteredData = pokemon
+
+    const allowedPokemonFields = ['id', 'name', 'type', 'height', 'weight', 'stage', 'colors', 'evolvesTo', 'evolvesFrom']
+    if(!allowedPokemonFields.includes(req.params.category)){
+        return res.status(400).json({ error: 'Invalid category' })
+    }
+
     if(req.params.category === 'type' || req.params.category === 'colors') {
         filteredData = filteredData.filter(p => p[category].includes(item)) 
     }
@@ -45,6 +51,12 @@ app.get('/:category/:item', (req, res) => {
 app.get('/cards/:attribute/:value', (req, res) => {
     const { attribute, value } = req.params
     let filteredData = pokemon
+
+    const allowedCardsFields = ['rarity', 'set_name', 'set_code', 'card_number', 'image_url']
+    if(!allowedCardsFields.includes(req.params.attribute)){
+        return res.status(400).json({ error: 'Invalid attribute' })
+    }
+
     if(req.params.value){
         filteredData = filteredData.filter(p => p.cards.some(card => card[attribute] === value))
     }
