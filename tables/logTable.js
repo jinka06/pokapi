@@ -13,7 +13,7 @@ async function viewAllPokemons() {
     const displayAllPokemons = pokemons.map(
       ({ name, type, height, weight, colors, stage }) => {
         return { name, type, height, weight, colors, stage };
-      },
+      }
     );
 
     console.log(displayAllPokemons);

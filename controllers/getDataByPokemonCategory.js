@@ -20,7 +20,7 @@ export const getDataByPokemonCategory = (req, res) => {
   }
 
   if (req.params.category === 'type' || req.params.category === 'colors') {
-    filteredData = filteredData.filter((p) => p[category].includes(item));
+    filteredData = filteredData.filter(p => p[category].includes(item));
   } else if (
     req.params.category === 'stage' ||
     req.params.category === 'name' ||
@@ -29,7 +29,7 @@ export const getDataByPokemonCategory = (req, res) => {
     req.params.category === 'height' ||
     req.params.category === 'weight'
   ) {
-    filteredData = filteredData.filter((p) => p[category] === item);
+    filteredData = filteredData.filter(p => p[category] === item);
   }
   res.json(filteredData);
 };

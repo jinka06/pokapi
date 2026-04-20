@@ -17,7 +17,7 @@ async function seedTable() {
         `
         INSERT INTO pokemons (name, type, height, weight, colors, stage) VALUES (?, ?, ?, ?, ?, ?)
       `,
-        [name, type, height, weight, colors, stage],
+        [name, type, height, weight, colors, stage]
       );
     }
 

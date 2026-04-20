@@ -16,8 +16,8 @@ export const getDataByCardAttribute = (req, res) => {
   }
 
   if (req.params.value) {
-    filteredData = filteredData.filter((p) =>
-      p.cards.some((card) => card[attribute] === value),
+    filteredData = filteredData.filter(p =>
+      p.cards.some(card => card[attribute] === value)
     );
   }
   res.json(filteredData);

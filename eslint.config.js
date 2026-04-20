@@ -29,7 +29,7 @@ export default [
       'prefer-const': 'error',
       'no-var': 'error',
       'object-shorthand': 'error',
-      'prefer-arrow-callback': 'error'
+      'prefer-arrow-callback': 'error',
     },
   },
   {
