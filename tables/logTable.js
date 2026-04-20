@@ -1,14 +1,14 @@
-import sqlite3 from 'sqlite3';
-import { open } from 'sqlite';
-import path from 'node:path';
+import sqlite3 from "sqlite3";
+import { open } from "sqlite";
+import path from "node:path";
 
 async function viewAllPokemons() {
   const db = await open({
-    filename: path.join('database.db'),
+    filename: path.join("database.db"),
     driver: sqlite3.Database,
   });
   try {
-    const pokemons = await db.all('SELECT * FROM pokemons');
+    const pokemons = await db.all("SELECT * FROM pokemons");
 
     const displayAllPokemons = pokemons.map(
       ({ name, type, height, weight, colors, stage }) => {
@@ -18,10 +18,10 @@ async function viewAllPokemons() {
 
     console.log(displayAllPokemons);
   } catch (err) {
-    console.error('Error fetching pokemons:', err.message);
+    console.error("Error fetching pokemons:", err.message);
   } finally {
     await db.close();
-    console.log('Database connection closed');
+    console.log("Database connection closed");
   }
 }
 

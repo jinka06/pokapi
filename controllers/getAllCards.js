@@ -1,4 +1,4 @@
-import { pokemon } from '../data/data.js';
+import { pokemon } from "../data/data.js";
 
 export const getAllCards = (req, res) => {
   let filteredData = pokemon;

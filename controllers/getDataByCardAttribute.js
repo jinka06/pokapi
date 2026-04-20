@@ -1,18 +1,18 @@
-import { pokemon } from '../data/data.js';
+import { pokemon } from "../data/data.js";
 
 export const getDataByCardAttribute = (req, res) => {
   const { attribute, value } = req.params;
   let filteredData = pokemon;
 
   const allowedCardsFields = [
-    'rarity',
-    'set_name',
-    'set_code',
-    'card_number',
-    'image_url',
+    "rarity",
+    "set_name",
+    "set_code",
+    "card_number",
+    "image_url",
   ];
   if (!allowedCardsFields.includes(req.params.attribute)) {
-    return res.status(400).json({ error: 'Invalid attribute' });
+    return res.status(400).json({ error: "Invalid attribute" });
   }
 
   if (req.params.value) {
