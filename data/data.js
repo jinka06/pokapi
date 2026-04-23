@@ -79,6 +79,13 @@ export const pokemon = [
         card_number: '198/165',
         image_url: 'https://images.scrydex.com/pokemon/sv3pt5-198/medium',
       },
+      {
+        rarity: 'Special Illustration Rare',
+        set_name: 'Mega-Evolution',
+        set_code: 'MEG',
+        card_number: '177/132',
+        image_url: 'https://images.scrydex.com/pokemon/me1-177/medium',
+      },
     ],
   },
   {
@@ -146,6 +153,20 @@ export const pokemon = [
         card_number: '228/197',
         image_url: 'https://images.scrydex.com/pokemon/sv3-228/medium',
       },
+      {
+        rarity: 'Special Illustration Rare',
+        set_name: 'Scarlet & Violet-Paldean Fates',
+        set_code: 'PAF',
+        card_number: '234/091',
+        image_url: 'https://images.scrydex.com/pokemon/sv4pt5-234/medium',
+      },
+      {
+        rarity: 'Special Illustration Rare',
+        set_name: 'Mega-Evolution - Fantasmal Flames',
+        set_code: 'PFL',
+        card_number: '125/094',
+        image_url: 'https://images.scrydex.com/pokemon/me2-125/medium',
+      },
     ],
   },
   {
@@ -165,6 +186,13 @@ export const pokemon = [
         set_code: 'MEW',
         card_number: '170/165',
         image_url: 'https://images.scrydex.com/pokemon/sv3pt5-170/medium',
+      },
+      {
+        rarity: 'Illustration Rare',
+        set_name: 'Scarlet & Violet-Stellar Crown',
+        set_code: 'SCR',
+        card_number: '148/142',
+        image_url: 'https://images.scrydex.com/pokemon/sv7-148/medium',
       },
     ],
   },
