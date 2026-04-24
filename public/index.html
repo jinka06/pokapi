@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@400;600;700&family=Raleway:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <title>Pokapi</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <header class="top-header">
+      <div class="header-left">
+        <span class="header-logo-mark">âœ¦</span>
+        <span class="header-brand">POKAPI</span>
+      </div>
+      <nav class="header-nav">
+        <a class="browse" href="#">Browse</a>
+        <a class="login" href="#">Login</a>
+        <label for="search">
+          <input
+            id="search"
+            class="search"
+            placeholder="Search cardsâ€¦"
+            type="text"
+          />
+        </label>
+      </nav>
+    </header>
+
+    <section class="main-title">
+      <div class="hero-bg-pattern"></div>
+      <div class="hero-content">
+        <div class="logo-frame">
+          <div class="logo-ring">
+            <img
+              src="./pokesplash.jpg"
+              alt="Pikachu plushie"
+              class="title-img"
+            />
+            <div class="logo-ring-label">EST. 2025</div>
+          </div>
+        </div>
+        <div class="title-phrases">
+          <div class="title-eyebrow">The Premier Collection</div>
+          <div class="title-txt">Pokapi</div>
+          <div class="title-divider">
+            <span class="divider-gem">â—†</span>
+          </div>
+          <div class="subtitle-txt">Curated IR &amp; SIR PokÃ©mon Cards</div>
+          <div class="hero-badges">
+            <span class="badge">Illustration Rare</span>
+            <span class="badge badge--gold">Special IR</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="cards-display">
+      <div class="cards-filter">
+        <div class="filter-label">
+          <span class="filter-gem">â—†</span>
+          <span class="view-txt">Filter collection</span>
+        </div>
+        <select class="cards-selection">
+          <option>Show all</option>
+          <option>Name</option>
+          <option>Type</option>
+          <option>Stage</option>
+          <option>Colors</option>
+        </select>
+      </div>
+      <div class="cards-count" id="cardsCount"></div>
+      <div class="cards" id="cardsContainer"></div>
+    </div>
+
+    <footer class="site-footer">
+      <span class="footer-gem">â—†</span>
+      <span>Pokapi &copy; 2025 â€” IR &amp; SIR Card Reference</span>
+      <span class="footer-gem">â—†</span>
+    </footer>
+
+    <script src="index.js" type="module"></script>
+  </body>
+</html>
