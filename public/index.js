@@ -1,4 +1,4 @@
-import { pokemon } from './data.js';
+import { pokemon } from '../data/data.js';
 
 const container = document.getElementById('cardsContainer');
 const countEl = document.getElementById('cardsCount');
