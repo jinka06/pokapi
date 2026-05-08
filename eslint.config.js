@@ -1,4 +1,5 @@
 import js from '@eslint/js';
+import skipFormatting from 'eslint-config-prettier';
 
 export default [
   js.configs.recommended,
@@ -22,10 +23,6 @@ export default [
       },
     },
     rules: {
-      indent: ['error', 2, { SwitchCase: 1 }],
-      'linebreak-style': ['error', 'unix'],
-      quotes: ['error', 'single'],
-      semi: ['error', 'always'],
       'no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
       'no-console': 'off',
       'prefer-const': 'error',
@@ -52,4 +49,5 @@ export default [
   {
     ignores: ['node_modules/**', 'coverage/**', 'logs/**', 'drizzle/**'],
   },
+  skipFormatting,
 ];
