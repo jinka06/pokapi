@@ -613,7 +613,8 @@ export const pokemon = [
         set_name: 'Genetic Apex',
         set_code: null,
         card_number: 'a1-238',
-        image_url: 'https://assets.mytcgcollection.com/tcgpocket/set/a1/a1-238.webp',
+        image_url:
+          'https://assets.mytcgcollection.com/tcgpocket/set/a1/a1-238.webp',
       },
     ],
   },
@@ -641,7 +642,7 @@ export const pokemon = [
         set_code: 'SSP',
         card_number: '208/217',
         image_url: 'https://images.scrydex.com/pokemon/sv8-208/medium',
-      }
+      },
     ],
   },
   {
@@ -696,7 +697,7 @@ export const pokemon = [
         set_code: null,
         card_number: 'B2-204',
         image_url: 'https://images.scrydex.com/pokemon/tcgp-B2-204/medium',
-      }
+      },
     ],
   },
   {
@@ -750,10 +751,10 @@ export const pokemon = [
         set_code: 'DRI',
         card_number: '193/182',
         image_url: 'https://images.scrydex.com/pokemon/sv10-193/medium',
-      }
+      },
     ],
   },
-{
+  {
     id: 58,
     name: 'Growlithe',
     type: ['fire'],
@@ -777,7 +778,27 @@ export const pokemon = [
         set_code: null,
         card_number: 'B1-230',
         image_url: 'https://images.scrydex.com/pokemon/tcgp-B1-230/medium',
-      }
+      },
+    ],
+  },
+  {
+    id: 59,
+    name: 'Arcanine',
+    type: ['fire'],
+    height: 1.9,
+    weight: 150.0,
+    stage: 'stage1',
+    colors: ['orange', 'white'],
+    evolvesTo: null,
+    evolvesFrom: 'Growlithe',
+    cards: [
+      {
+        rarity: 'Trainer Gallery Rare Holo',
+        set_name: 'Sword & Shield-Lost Origin Trainer Gallery',
+        set_code: 'TG',
+        card_number: 'TG08/TG30',
+        image_url: 'https://images.scrydex.com/pokemon/swsh11tg-TG08/medium',
+      },
     ],
   },
   {
