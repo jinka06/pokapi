@@ -269,6 +269,26 @@ export const pokemon = [
     ],
   },
   {
+    id: 16,
+    name: 'Pidgey',
+    type: ['flying', 'normal'],
+    height: 0.3,
+    weight: 1.8,
+    stage: 'basic',
+    colors: ['brown', 'red', 'white'],
+    evolvesTo: 'Pidgeotto',
+    evolvesFrom: null,
+    cards: [
+      {
+        rarity: 'Illustration Rare',
+        set_name: 'Scarlet & Violet-Obsidian Flames',
+        set_code: 'OBF',
+        card_number: '207/197',
+        image_url: 'https://images.scrydex.com/pokemon/sv3-207/medium',
+      },
+    ],
+  },
+  {
     id: 17,
     name: 'Pidgeotto',
     type: ['flying', 'normal'],
@@ -598,27 +618,6 @@ export const pokemon = [
     ],
   },
   {
-    id: 50,
-    name: 'Diglett *',
-    type: ['ground'],
-    height: 0.2,
-    weight: 0.8,
-    stage: 'basic',
-    colors: ['brown'],
-    evolvesTo: 'Dugtrio',
-    evolvesFrom: null,
-    cards: [
-      {
-        rarity: 'Illustration Rare',
-        set_name: 'Genetic Apex',
-        set_code: null,
-        card_number: 'a1-238',
-        image_url:
-          'https://assets.mytcgcollection.com/tcgpocket/set/a1/a1-238.webp',
-      },
-    ],
-  },
-  {
     id: 51,
     name: 'Dugtrio',
     type: ['ground'],
@@ -676,27 +675,6 @@ export const pokemon = [
         set_code: 'POR',
         card_number: '121/088',
         image_url: 'https://images.scrydex.com/pokemon/me3-121/medium',
-      },
-      {
-        rarity: 'Illustration Rare',
-        set_name: 'Genetic Apex',
-        set_code: null,
-        card_number: 'A1-246',
-        image_url: 'https://images.scrydex.com/pokemon/tcgp-A1-246/medium',
-      },
-      {
-        rarity: 'Illustration Rare',
-        set_name: 'Extradimensional Crisis',
-        set_code: null,
-        card_number: 'A3a-73',
-        image_url: 'https://images.scrydex.com/pokemon/tcgp-A3a-73/medium',
-      },
-      {
-        rarity: 'Special Illustration Rare',
-        set_name: 'Fantastical Parade',
-        set_code: null,
-        card_number: 'B2-204',
-        image_url: 'https://images.scrydex.com/pokemon/tcgp-B2-204/medium',
       },
     ],
   },
@@ -772,13 +750,6 @@ export const pokemon = [
         card_number: '181/167',
         image_url: 'https://images.scrydex.com/pokemon/sv6-181/medium',
       },
-      {
-        rarity: 'Illustration Rare',
-        set_name: 'Mega Rising',
-        set_code: null,
-        card_number: 'B1-230',
-        image_url: 'https://images.scrydex.com/pokemon/tcgp-B1-230/medium',
-      },
     ],
   },
   {
@@ -821,7 +792,33 @@ export const pokemon = [
       },
     ],
   },
-
+  {
+    id: 65,
+    name: 'Alakazam',
+    type: ['psychic'],
+    height: 1.5,
+    weight: 48.0,
+    stage: 'stage2',
+    colors: ['gold', 'brown'],
+    evolvesTo: null,
+    evolvesFrom: 'Kadabra',
+    cards: [
+      {
+        rarity: 'Illustration Rare',
+        set_name: 'Scarlet & Violet-151',
+        set_code: 'MEW',
+        card_number: '201/165',
+        image_url: 'https://images.scrydex.com/pokemon/sv3pt5-201/medium',
+      },
+      {
+        rarity: 'Art Rare*',
+        set_name: 'Mega Evolution',
+        set_code: 'MEP',
+        card_number: 'Promo',
+        image_url: 'https://images.scrydex.com/pokemon/mep-9/medium',
+      },
+    ],
+  },
   {
     id: 67,
     name: 'Machoke',
@@ -842,28 +839,267 @@ export const pokemon = [
       },
     ],
   },
-
   {
-    id: 65,
-    name: 'Alakazam',
-    type: ['psychic'],
-    height: 1.5,
-    weight: 48.0,
+    id: 68,
+    name: 'Machamp',
+    type: ['fighting'],
+    height: 1.6,
+    weight: 130.0,
     stage: 'stage2',
-    colors: ['gold', 'brown'],
+    colors: ['purple', 'grey'],
     evolvesTo: null,
-    evolvesFrom: 'Kadabra',
+    evolvesFrom: 'Machoke',
     cards: [
       {
-        rarity: 'Special Illustration Rare',
-        set_name: 'Scarlet & Violet-151',
-        set_code: 'MEW',
-        card_number: '201/165',
-        image_url: 'https://images.scrydex.com/pokemon/sv3pt5-201/medium',
+        rarity: 'Art Rare*',
+        set_name: 'Sword & Shield-Astral Radiance',
+        set_code: null,
+        card_number: '172/189',
+        image_url: 'https://images.scrydex.com/pokemon/swsh10-172/medium',
       },
     ],
   },
-
+  {
+    id: 78,
+    name: 'Rapidash',
+    type: ['fire'],
+    height: 1.7,
+    weight: 95.0,
+    stage: 'stage1',
+    colors: ['white', 'orange'],
+    evolvesTo: null,
+    evolvesFrom: 'Ponyta',
+    cards: [
+      {
+        rarity: 'Illustration Rare',
+        set_name: 'Scarlet & Violet-Destined Rivals',
+        set_code: 'DRI',
+        card_number: '189/182',
+        image_url: 'https://images.scrydex.com/pokemon/sv10-189/medium',
+      },
+      {
+        rarity: 'Illustration Rare',
+        set_name: 'Sword & Shield-Chilling Reign',
+        set_code: 'CRE',
+        card_number: '168/198',
+        image_url: 'https://images.scrydex.com/pokemon/swsh6-168/medium',
+      },
+    ],
+  },
+  {
+    id: 79,
+    name: 'Slowpoke',
+    type: ['water', 'psychic'],
+    height: 1.2,
+    weight: 36.0,
+    stage: 'basic',
+    colors: ['pink', 'white'],
+    evolvesTo: ['Slowbro', 'Slowking'],
+    evolvesFrom: null,
+    cards: [
+      {
+        rarity: 'Illustration Rare',
+        set_name: 'Scarlet & Violet-Scarlet & Violet',
+        set_code: 'SV1',
+        card_number: '204/198',
+        image_url: 'https://images.scrydex.com/pokemon/sv1-204/medium',
+      },
+    ],
+  },
+  {
+    id: 80,
+    name: 'Slowbro',
+    type: ['water', 'psychic'],
+    height: 1.6,
+    weight: 78.5,
+    stage: 'stage1',
+    colors: ['pink', 'white'],
+    evolvesTo: null,
+    evolvesFrom: 'Slowpoke',
+    cards: [
+      {
+        rarity: 'Illustration Rare',
+        set_name: 'Mega Evolution-Pitch Black',
+        set_code: 'PBL',
+        card_number: '??/??',
+        image_url: 'https://images.scrydex.com/pokemon/m5_ja-87/medium',
+      },
+    ],
+  },
+  {
+    id: 82,
+    name: 'Magneton',
+    type: ['electric', 'steel'],
+    height: 1.0,
+    weight: 60.0,
+    stage: 'stage1',
+    colors: ['grey', 'blue', 'red'],
+    evolvesTo: 'Magneton',
+    evolvesFrom: 'Magnemite',
+    cards: [
+      {
+        rarity: 'Black Star Promo',
+        set_name: 'Scarlet & Violet-Surging Sparks',
+        set_code: 'SVP',
+        card_number: '159/??',
+        image_url: 'https://images.scrydex.com/pokemon/svp-159/medium',
+      },
+    ],
+  },
+  {
+    id: 92,
+    name: 'Gastly',
+    type: ['ghost', 'poison'],
+    height: 1.3,
+    weight: 0.1,
+    stage: 'base',
+    colors: ['purple', 'black'],
+    evolvesTo: 'Haunter',
+    evolvesFrom: null,
+    cards: [
+      {
+        rarity: 'Illustration Rare',
+        set_name: 'Scarlet & Violet-Temporal Forces',
+        set_code: 'TEF',
+        card_number: '177/162',
+        image_url: 'https://images.scrydex.com/pokemon/sv5-177/medium',
+      },
+    ],
+  },
+  {
+    id: 93,
+    name: 'Haunter',
+    type: ['ghost', 'poison'],
+    height: 1.8,
+    weight: 0.1,
+    stage: 'stage1',
+    colors: ['purple', 'black'],
+    evolvesTo: 'Gengar',
+    evolvesFrom: 'Gastly',
+    cards: [
+      {
+        rarity: 'Promo',
+        set_name: 'Mega Evolution',
+        set_code: 'MEP',
+        card_number: '027/??',
+        image_url: 'https://images.scrydex.com/pokemon/mep-27/medium',
+      },
+    ],
+  },
+  {
+    id: 94,
+    name: 'Gengar',
+    type: ['ghost', 'poison'],
+    height: 1.5,
+    weight: 40.5,
+    stage: 'stage2',
+    colors: ['purple', 'black'],
+    evolvesTo: null,
+    evolvesFrom: 'Haunter',
+    cards: [
+      {
+        rarity: 'Trainer Gallery Full Art Rare',
+        set_name: 'Sword & Shield-Lost Origin Trainer Gallery',
+        set_code: 'TG',
+        card_number: 'TG06/TG30',
+        image_url: 'https://images.scrydex.com/pokemon/swsh11tg-TG06/medium',
+      },
+      {
+        rarity: 'Promo',
+        set_name: 'Mega Evolution-Ascended Heroes',
+        set_code: 'ASC',
+        card_number: '284/217',
+        image_url: 'https://images.scrydex.com/pokemon/me2pt5-284/medium',
+      },
+    ],
+  },
+  {
+    id: 95,
+    name: 'Drowzee',
+    type: ['psychic'],
+    height: 1.0,
+    weight: 32.4,
+    stage: 'stage1',
+    colors: ['yellow', 'brown'],
+    evolvesTo: 'Hypno',
+    evolvesFrom: null,
+    cards: [
+      {
+        rarity: 'Illustration Rare',
+        set_name: 'Scarlet & Violet',
+        set_code: 'SV1',
+        card_number: '210/198',
+        image_url: 'https://images.scrydex.com/pokemon/sv1-210/medium',
+      },
+    ],
+  },
+  {
+    id: 100,
+    name: 'Voltorb',
+    type: ['electric'],
+    height: 0.5,
+    weight: 10.4,
+    stage: 'basic',
+    colors: ['red', 'white'],
+    evolvesTo: 'Electrode',
+    evolvesFrom: null,
+    cards: [
+      {
+        rarity: 'Trainer Gallery Rare',
+        set_name: 'Sword & Shield-Crown Zenith Galarian Gallery',
+        set_code: 'GG',
+        card_number: 'GG01/GG70',
+        image_url: 'https://images.scrydex.com/pokemon/swsh12pt5gg-GG01/medium',
+      },
+    ],
+  },
+  {
+    id: 102,
+    name: 'Exeggcute',
+    type: ['grass', 'psychic'],
+    height: 0.4,
+    weight: 2.5,
+    stage: 'basic',
+    colors: ['pink', 'orange'],
+    evolvesTo: 'Exeggutor',
+    evolvesFrom: null,
+    cards: [
+      {
+        rarity: 'Illustration Rare',
+        set_name: 'Scarlet & Violet-Surging Sparks',
+        set_code: 'SSP',
+        card_number: '192/191',
+        image_url: 'https://images.scrydex.com/pokemon/sv8-192/medium',
+      },
+    ],
+  },
+  {
+    id: 102,
+    name: 'Exeggutor',
+    type: ['grass', 'psychic'],
+    height: 2.0,
+    weight: 12.0,
+    stage: 'stage1',
+    colors: ['pink', 'orange'],
+    evolvesTo: null,
+    evolvesFrom: 'Exeggcute',
+    cards: [
+      {
+        rarity: 'Illustration Rare',
+        set_name: 'Mega Evolution',
+        set_code: 'MEG',
+        card_number: '135/132',
+        image_url: 'https://images.scrydex.com/pokemon/me1-135/medium',
+      },
+      {
+        rarity: 'Special Illustration Rare',
+        set_name: 'Scarlet & Violet-Surging Sparks',
+        set_code: 'SSP',
+        card_number: '242/191',
+        image_url: 'https://images.scrydex.com/pokemon/sv8-242/medium',
+      },
+    ],
+  },
   {
     id: 114,
     name: 'Tangela',
@@ -976,55 +1212,13 @@ export const pokemon = [
     ],
   },
 
-  // ─── Gen 1 Pokémon from Mega Evolution (MEG) ─────────────────────────────
-
-  {
-    id: 102,
-    name: 'Exeggutor',
-    type: ['grass', 'psychic'],
-    height: 2.0,
-    weight: 120.0,
-    stage: 'stage1',
-    colors: ['yellow', 'green'],
-    evolvesTo: null,
-    evolvesFrom: 'Exeggcute',
-    cards: [
-      {
-        rarity: 'Illustration Rare',
-        set_name: 'Mega Evolution',
-        set_code: 'MEG',
-        card_number: '135/132',
-        image_url: 'https://images.scrydex.com/pokemon/me1-135/medium',
-      },
-    ],
-  },
-
-  {
-    id: 21,
-    name: 'Spearow',
-    type: ['normal', 'flying'],
-    height: 0.3,
-    weight: 2.0,
-    stage: 'basic',
-    colors: ['brown', 'red'],
-    evolvesTo: 'Fearow',
-    evolvesFrom: null,
-    cards: [
-      {
-        rarity: 'Illustration Rare',
-        set_name: 'Mega Evolution',
-        set_code: 'MEG',
-        card_number: '151/132',
-        image_url: 'https://images.scrydex.com/pokemon/me1-151/medium',
-      },
-    ],
-  },
+  // ══════════════════════════════════════════════════════════════════════════
+  // ─── Johto (Gen 2) ────────────────────────────────────────────────────────
+  // ══════════════════════════════════════════════════════════════════════════
 
   {
     id: 113,
     name: 'Delibird',
-    // NOTE: Delibird is Gen 2 (#225 national dex), but appears in MEG set
-    // kept here as it appears alongside gen1 entries in MEG
     type: ['ice', 'flying'],
     height: 0.9,
     weight: 16.0,
@@ -1042,24 +1236,30 @@ export const pokemon = [
       },
     ],
   },
-
-  // ══════════════════════════════════════════════════════════════════════════
-  // ─── Johto (Gen 2) ────────────────────────────────────────────────────────
-  // ══════════════════════════════════════════════════════════════════════════
-
-  // NOTE: Delibird (national dex #225) is listed under Gen 1 above because it
-  // appears in the same set block. It belongs here canonically.
-  // {id:225, name:'Delibird'} → see entry above in MEG section
-
-  // No Gen 2 Pokémon have confirmed IR/SIR cards in verified sets at this time
-  // beyond what appears in cross-gen sets (e.g. Togekiss ASC, Misdreavus ASC).
-  // These cross-gen appearances are listed under their actual generation below.
+  {
+    id: 199,
+    name: 'Slowking',
+    type: ['water', 'psychic'],
+    height: 1.8,
+    weight: 199.0,
+    stage: 'stage1',
+    colors: ['pink', 'white'],
+    evolvesTo: null,
+    evolvesFrom: 'Slowpoke',
+    cards: [
+      {
+        rarity: 'Secret Alt Rare*',
+        set_name: 'Sword & Shield-Peerless Fighters',
+        set_code: null,
+        card_number: '80/70',
+        image_url: 'https://images.scrydex.com/pokemon/swsh5a_ja-80/medium',
+      },
+    ],
+  },
 
   // ══════════════════════════════════════════════════════════════════════════
   // ─── Hoenn (Gen 3) ────────────────────────────────────────────────────────
   // ══════════════════════════════════════════════════════════════════════════
-
-  // MEG Hoenn Pokémon with IR cards
 
   {
     id: 205,
