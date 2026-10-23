@@ -17,5 +17,16 @@ pipeline {
                 sh 'npm audit --audit-level=critical || true'
             }
         }
+
+        stage('Unit testing'){
+            steps {
+                sh 'npm test'
+            }
+            post {
+                always {
+                    junit allowEmptyResults: true, testResults: 'test-results.xml'
+                }
+            }
+        }
     }
 }

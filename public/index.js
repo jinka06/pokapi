@@ -1,4 +1,5 @@
-import { pokemon } from '../data/data.js';
+const res = await fetch('/api');
+const pokemon = await res.json();
 
 const container = document.getElementById('cardsContainer');
 const countEl = document.getElementById('cardsCount');
