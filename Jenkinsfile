@@ -40,7 +40,10 @@ pipeline {
 
         stage('OWASP Dependency Check') {
             steps {
-                dependencyCheck additionalArguments: '--scan ./ --out ./ --format ALL -- disableYarnAudit --prettyPrint', odcInstallation: 'OWASP-DepCheck-13' dependencyCheckPublisher pattern: 'dependency-check-report.xml', failedTotalCritical: 1, stopBuild: true
+                withCredentials([string(credentialsId: 'nvd-api-key', variable: 'NVD_KEY')]){
+                    dependencyCheck additionalArguments: '--scan ./ --out ./ --format ALL --disableYarnAudit --prettyPrint --data /var/jenkins_home/odc-data --nvdApiKey $NVD_KEY', odcInstallation: 'OWASP-DepCheck-13'
+                    dependencyCheckPublisher pattern: 'dependency-check-report.xml', failedTotalCritical: 1, stopBuild: true
+                }
             }
         }
     }
