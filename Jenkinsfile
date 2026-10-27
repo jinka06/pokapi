@@ -37,5 +37,11 @@ pipeline {
                 publishHTML([allowMissing: true, alwaysLinkToLastBuild: true, keepAll: true, reportDir: 'coverage/lcov-report/', reportFiles: 'index.html', reportName: 'Code Coverage HTML Report', useWrapperFileDirectly: true])
             }
         }
+
+        stage('OWASP Dependency Check') {
+            steps {
+                dependencyCheck additionalArguments: '--scan ./ --out ./ --format ALL -- disableYarnAudit --prettyPrint', odcInstallation: 'OWASP-DepCheck-13' dependencyCheckPublisher pattern: 'dependency-check-report.xml', failedTotalCritical: 1, stopBuild: true
+            }
+        }
     }
 }

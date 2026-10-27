@@ -8,3 +8,12 @@ describe('API', () => {
     expect(res.status).toBe(200);
   });
 });
+
+describe('GET /api/cards', () => {
+  it('returns all current cards', async () => {
+    const res = await request(app).get('/api/cards');
+    expect(res.status).toBe(200);
+    expect(Array.isArray(res.body)).toBe(true);
+    expect(res.body.length).toBeGreaterThan(0);
+  });
+});
