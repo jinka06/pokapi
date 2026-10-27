@@ -28,5 +28,14 @@ pipeline {
                 }
             }
         }
+
+        stage('Code Coverage') {
+            steps {
+                catchError(buildResult: 'SUCCESS', message: 'Coverage step failed, to be fixed', stageResult: 'UNSTABLE') {
+                    sh 'npm run coverage'
+                }
+                publishHTML([allowMissing: true, alwaysLinkToLastBuild: true, keepAll: true, reportDir: 'cpverage/lcov-report/', reportFiles: 'index.html', reportName: 'Code Coverage HTML Report', useWrapperFileDirectory: true])
+            }
+        }
     }
 }
