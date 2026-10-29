@@ -1,11 +1,21 @@
 pipeline {
     agent any
 
+    environment{
+        IMAGE = 'jinkura/pokapi'
+    }
+
     tools {
         nodejs 'Node26121'
     }
 
     stages {
+        stage('Set Image Tag') {
+            steps {
+                script { env.IMAGE_TAG = env.GIT_COMMIT.take(7)}
+            }
+        }
+        
         stage('Install') {
             steps {
                 sh 'npm ci --no-audit'
