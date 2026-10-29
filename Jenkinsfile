@@ -59,7 +59,7 @@ pipeline {
 
         stage('Docker Build') {
             steps {
-                sh 'docker build -t $IMAGE:$IMAGE_TAG .'
+                sh 'docker build --pull -t $IMAGE:$IMAGE_TAG .'
             }
         }
 
@@ -92,18 +92,6 @@ pipeline {
                     publishHTML([allowMissing: true, alwaysLinkToLastBuild: true, keepAll: true,
                                  reportDir: './', reportFiles: 'trivy-image-MEDIUM-results.html',
                                  reportName: 'Trivy Image Medium Vul Report', useWrapperFileDirectly: true])
-                }
-            }
-        }
-
-        stage ('Docker Image') {
-            steps {
-                withCredentials([userNamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_TOKEN')]){
-                    sh '''
-                        echo "$DOCKER_TOKEN" | docker login -u "$DOCKER_USER" --password-stdin
-                        docker push $IMAGE:$IMAGE_TAG
-                        echo "Docker image pushed successfully"
-                    '''
                 }
             }
         }
