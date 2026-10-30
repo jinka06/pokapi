@@ -5,5 +5,5 @@ COPY package*.json ./
 RUN npm ci --omit=dev && rm -rf /usr/local/lib/node_modules /usr/local/bin/npm /usr/local/bin/npx /opt/yarn-*
 COPY . .
 USER node
-EXPOSE 3000
+EXPOSE 8000
 CMD ["node", "server.js"]

@@ -95,5 +95,18 @@ pipeline {
                 }
             }
         }
+
+        stage('Docker Image Push') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'dockerhub-creds',
+                                                  usernameVariable: 'DOCKER_USER',
+                                                  passwordVariable: 'DOCKER_TOKEN')]) {
+                    sh '''
+                        echo "$DOCKER_TOKEN" | docker login -u "$DOCKER_USER" --password-stdin
+                        docker push $IMAGE:$IMAGE_TAG
+                        echo "Docker image pushed successfully"
+                    '''
+            }
+        }
     }
 }
