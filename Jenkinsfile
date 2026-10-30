@@ -106,6 +106,7 @@ pipeline {
                         docker push $IMAGE:$IMAGE_TAG
                         echo "Docker image pushed successfully"
                     '''
+                }
             }
         }
     }

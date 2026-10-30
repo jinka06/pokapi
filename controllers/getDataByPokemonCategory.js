@@ -29,7 +29,6 @@ export const getDataByPokemonCategory = (req, res) => {
     req.params.category === 'height' ||
     req.params.category === 'weight'
   ) {
-
     const target = item.toLowerCase();
     filteredData = pokemon.filter(p => p[category]?.toLowerCase() === target);
   }

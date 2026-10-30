@@ -3,9 +3,9 @@ const pokemon = await res.json();
 
 const container = document.getElementById('cardsContainer');
 const countEl = document.getElementById('cardsCount');
-const searchEl = document.getElementById('search')
-const filterEl = document.getElementById('filterBy')
-const valueEl = document.getElementById('filterValue')
+const searchEl = document.getElementById('search');
+const filterEl = document.getElementById('filterBy');
+const valueEl = document.getElementById('filterValue');
 
 const allCards = pokemon.flatMap(pkmn =>
   pkmn.cards.map(card => ({ pkmn, card }))
@@ -57,21 +57,22 @@ const label = value =>
 
 const optionsFor = key =>
   [...new Set(pokemon.flatMap(p => [].concat(p[key] ?? [])))].sort();
- 
+
 const render = () => {
   const query = searchEl.value.trim().toLowerCase();
   const key = filterEl.value;
   const chosen = valueEl.value;
- 
+
   const shown = allCards.filter(({ pkmn }) => {
     const nameOk = !query || pkmn.name.toLowerCase().includes(query);
-    const attrOk = !key || !chosen || [].concat(pkmn[key] ?? []).includes(chosen);
+    const attrOk =
+      !key || !chosen || [].concat(pkmn[key] ?? []).includes(chosen);
     return nameOk && attrOk;
   });
- 
+
   const pokemonCount = new Set(shown.map(({ pkmn }) => pkmn.name)).size;
   countEl.textContent = `${shown.length} cards · ${pokemonCount} Pokémon`;
- 
+
   container.innerHTML = shown.length
     ? shown.map(cardHtml).join('')
     : '<p class="no-results">No cards match your search.</p>';
@@ -92,8 +93,8 @@ filterEl.addEventListener('change', () => {
   }
   render();
 });
- 
+
 valueEl.addEventListener('change', render);
 searchEl.addEventListener('input', render);
- 
+
 render();
