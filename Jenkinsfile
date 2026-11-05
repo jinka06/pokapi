@@ -128,5 +128,28 @@ pipeline {
                 }
             }
         }
+
+        stage('Update GitOps Manifest') {
+            when { branch 'main' }
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'pokapi-gitops-token',
+                                          usernameVariable: 'GIT_USER',
+                                          passwordVariable: 'GIT_TOKEN')]) {
+                    sh '''
+                        rm -rf gitops
+                        git clone https://$GIT_USER:$GIT_TOKEN@github.com/jinka06/pokapi-gitops.git gitops
+                        cd gitops
+                        sed -i "s|image: .*pokapi:.*|image: $IMAGE:$IMAGE_TAG|" pokapi-gitops-deployment.yaml
+                        git config user.name "jenkins"
+                        git config user.email "jenkins@local"
+                        if ! git diff --quiet; then
+                            git commit -am "pokapi: update image to $IMAGE_TAG"
+                            git push origin HEAD:main
+                        fi
+                        cd .. && rm -rf gitops
+                    '''
+                }
+            }
+        }
     }
 }
