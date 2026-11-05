@@ -129,7 +129,7 @@ pipeline {
             }
         }
 
-        stage('Update GitOps Manifest') {
+        stage('GitOps Manifest Update') {
             when { branch 'main' }
             steps {
                 withCredentials([usernamePassword(credentialsId: 'pokapi-gitops-token',
