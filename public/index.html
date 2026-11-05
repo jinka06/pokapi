@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -24,7 +24,7 @@
           <input
             id="search"
             class="search"
-            placeholder="Search cards"
+            placeholder="Search cards by name"
             type="text"
           />
         </label>
@@ -64,13 +64,13 @@
         <div class="filter-label">
           <span class="view-txt">Filter collection</span>
         </div>
-        <select class="cards-selection">
+        <select class="cards-selection" id="filterBy">
           <option>Show all</option>
-          <option>Name</option>
-          <option>Type</option>
-          <option>Stage</option>
-          <option>Colors</option>
+          <option value="type">Type</option>
+          <option value="stage">Stage</option>
+          <option value="colors">Colors</option>
         </select>
+        <select class="cards-selection" id="filterValue" hidden></select>
       </div>
       <div class="cards-count" id="cardsCount"></div>
       <div class="cards" id="cardsContainer"></div>
@@ -82,6 +82,6 @@
       <span class="footer-gem">â—†</span>
     </footer>
 
-    <script src="index.js" type="module"></script>
+    <script src="/index.js" type="module"></script>
   </body>
 </html>

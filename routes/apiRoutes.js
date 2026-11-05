@@ -5,8 +5,8 @@ import { getDataByCardAttribute } from '../controllers/getDataByCardAttribute.js
 
 export const apiRouter = express.Router();
 
-apiRouter.get('/', getAllCards);
+apiRouter.get('/api/cards', getAllCards);
 
-apiRouter.get('/:category/:item', getDataByPokemonCategory);
+apiRouter.get('/api/cards/:category/:item', getDataByPokemonCategory);
 
-apiRouter.get('/cards/:attribute/:value', getDataByCardAttribute);
+apiRouter.get('/api/cards/attribute/:attribute/:value', getDataByCardAttribute);

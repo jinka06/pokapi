@@ -2,7 +2,6 @@ import { pokemon } from '../data/data.js';
 
 export const getDataByCardAttribute = (req, res) => {
   const { attribute, value } = req.params;
-  let filteredData = pokemon;
 
   const allowedCardsFields = [
     'rarity',
@@ -15,10 +14,9 @@ export const getDataByCardAttribute = (req, res) => {
     return res.status(400).json({ error: 'Invalid attribute' });
   }
 
-  if (req.params.value) {
-    filteredData = filteredData.filter(p =>
-      p.cards.some(card => card[attribute] === value)
-    );
-  }
+  const target = value.toLowerCase();
+  const filteredData = pokemon.filter(p =>
+    p.cards.some(card => card[attribute]?.toLowerCase() === target)
+  );
   res.json(filteredData);
 };

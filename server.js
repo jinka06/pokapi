@@ -1,16 +1,6 @@
-import express from 'express';
-import { apiRouter } from './routes/apiRoutes.js';
+import app from './app.js';
 
-const PORT = 8000;
-
-const app = express();
-
-app.use('/api', apiRouter);
-app.use((req, res) => {
-  res.status(404).json({
-    error: 'Welcome to the Pokémon API! Use /api to access the endpoints.',
-  });
-});
+const PORT = process.env.PORT || 8000;
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
