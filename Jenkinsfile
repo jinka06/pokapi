@@ -57,6 +57,23 @@ pipeline {
             }
         }
 
+        stage('SonarQube - SAST') {
+            steps {
+                timeout(time: 120, unit: 'SECONDS') {
+                    withSonarQubeEnv('sonarqube-server') {
+                        sh '''
+                            $SONAR_SCANNER_HOME/bin/sonar-scanner \
+                              -Dsonar.projectKey=Pokapi \
+                              -Dsonar.sources=. \
+                              -Dsonar.exclusions=node_modules/**,coverage/** \
+                              -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
+                        '''
+                    }
+                    waitForQualityGate abortPipeline: true
+                }
+            }
+        }
+
         stage('Docker Build') {
             steps {
                 sh 'docker build --pull -t $IMAGE:$IMAGE_TAG .'
