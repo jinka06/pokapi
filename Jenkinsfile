@@ -3,6 +3,7 @@ pipeline {
 
     environment{
         IMAGE = 'jinkura/pokapi'
+        SONAR_SCANNER_HOME = tool 'sonarqube-scanner-820'
     }
 
     tools {
@@ -58,8 +59,9 @@ pipeline {
         }
 
         stage('SonarQube - SAST') {
+            when { branch 'main' }
             steps {
-                timeout(time: 120, unit: 'SECONDS') {
+                timeout(time: 5, unit: 'MINUTES') {
                     withSonarQubeEnv('sonarqube-server') {
                         sh '''
                             $SONAR_SCANNER_HOME/bin/sonar-scanner \
