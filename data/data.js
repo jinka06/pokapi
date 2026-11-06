@@ -952,7 +952,7 @@ export const pokemon = [
     type: ['ghost', 'poison'],
     height: 1.3,
     weight: 0.1,
-    stage: 'base',
+    stage: 'basic',
     colors: ['purple', 'black'],
     evolvesTo: 'Haunter',
     evolvesFrom: null,

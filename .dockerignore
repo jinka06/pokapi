@@ -1,5 +1,12 @@
 node_modules
 .git
 .env
+.env.*
 dist
 Coverage
+tests
+*.pem
+dependency-check-report.*
+trivy-*
+.scannerwork
+Jenkinsfile
