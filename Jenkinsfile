@@ -139,12 +139,15 @@ pipeline {
                         rm -rf gitops
                         git clone https://$GIT_USER:$GIT_TOKEN@github.com/jinka06/pokapi-gitops.git gitops
                         cd gitops
-                        sed -i "s|image: .*pokapi:.*|image: $IMAGE:$IMAGE_TAG|" pokapi-gitops-deployment.yaml
+                        sed -i "s|image:.*|image: $IMAGE:$IMAGE_TAG|" pokapi-gitops-deployment.yaml
+                        grep -q "image: $IMAGE:$IMAGE_TAG" pokapi-gitops-deployment.yaml || { echo "Manifest update failed"; exit 1; }
                         git config user.name "jenkins"
                         git config user.email "jenkins@local"
-                        if ! git diff --quiet; then
+                        if git diff --quiet; then
+                            echo "Manifest already uses $IMAGE_TAG"
+                        else
                             git commit -am "pokapi: update image to $IMAGE_TAG"
-                            git push origin HEAD:main
+                            git push origin HEAD
                         fi
                         cd .. && rm -rf gitops
                     '''

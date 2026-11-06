@@ -56,7 +56,9 @@ const label = value =>
     .replace(/^./, c => c.toUpperCase());
 
 const optionsFor = key =>
-  [...new Set(pokemon.flatMap(p => [].concat(p[key] ?? [])))].sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
+  [...new Set(pokemon.flatMap(p => [].concat(p[key] ?? [])))].sort((a, b) =>
+    a.localeCompare(b, undefined, { numeric: true })
+  );
 
 const render = () => {
   const query = searchEl.value.trim().toLowerCase();
