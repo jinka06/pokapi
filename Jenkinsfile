@@ -67,7 +67,7 @@ pipeline {
                             $SONAR_SCANNER_HOME/bin/sonar-scanner \
                               -Dsonar.projectKey=Pokapi \
                               -Dsonar.sources=. \
-                              -Dsonar.exclusions=node_modules/**,coverage/** \
+                              -Dsonar.exclusions=node_modules/**,coverage/**,dependency-check-*,trivy-* \
                               -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
                         '''
                     }
