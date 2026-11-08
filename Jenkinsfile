@@ -116,6 +116,7 @@ pipeline {
         }
 
         stage('Docker Image Push') {
+            when { branch 'main' }
             steps {
                 withCredentials([usernamePassword(credentialsId: 'dockerhub-creds',
                                                   usernameVariable: 'DOCKER_USER',
