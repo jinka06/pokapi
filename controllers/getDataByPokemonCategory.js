@@ -1,33 +1,25 @@
 import { pokemon } from '../data/data.js';
 
 export const getDataByPokemonCategory = (req, res) => {
-  const { category, item } = req.params;
+  const { category, item } = req.validated;
   let filteredData = pokemon;
 
-  const allowedPokemonFields = [
-    'id',
-    'name',
-    'type',
-    'height',
-    'weight',
-    'stage',
-    'colors',
-    'evolvesTo',
-    'evolvesFrom',
-  ];
-  if (!allowedPokemonFields.includes(req.params.category)) {
-    return res.status(400).json({ error: 'Invalid category' });
-  }
-
-  if (req.params.category === 'type' || req.params.category === 'colors') {
-    filteredData = filteredData.filter(p => p[category].includes(item));
+  if (category === 'type' || category === 'colors') {
+    const target = item.toLowerCase();
+    filteredData = filteredData.filter(p =>
+      p[category]?.some(value => value.toLowerCase() === target)
+    );
   } else if (
-    req.params.category === 'stage' ||
-    req.params.category === 'name' ||
-    req.params.category === 'evolvesTo' ||
-    req.params.category === 'evolvesFrom' ||
-    req.params.category === 'height' ||
-    req.params.category === 'weight'
+    category === 'id' ||
+    category == 'height' ||
+    category == 'weight'
+  ) {
+    filteredData = filteredData.filter(p => p[category] === Number(item));
+  } else if (
+    category === 'stage' ||
+    category === 'name' ||
+    category === 'evolvesTo' ||
+    category === 'evolvesFrom'
   ) {
     const target = item.toLowerCase();
     filteredData = pokemon.filter(p => p[category]?.toLowerCase() === target);
