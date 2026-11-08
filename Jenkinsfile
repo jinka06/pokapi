@@ -10,6 +10,10 @@ pipeline {
         nodejs 'Node26121'
     }
 
+    options {
+        timestamps()
+    }
+
     stages {
         stage('Set Image Tag') {
             steps {
@@ -61,7 +65,7 @@ pipeline {
         stage('SonarQube - SAST') {
             when { branch 'main' }
             steps {
-                timeout(time: 5, unit: 'MINUTES') {
+                timeout(time: 10, unit: 'MINUTES') {
                     withSonarQubeEnv('sonarqube-server') {
                         sh '''
                             $SONAR_SCANNER_HOME/bin/sonar-scanner \
@@ -71,6 +75,9 @@ pipeline {
                               -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
                         '''
                     }
+                }
+
+                timeout(time: 10, unit: 'MINUTES') {
                     waitForQualityGate abortPipeline: true
                 }
             }
