@@ -10,3 +10,4 @@ dependency-check-report.*
 trivy-*
 .scannerwork
 Jenkinsfile
+reports/

@@ -56,8 +56,8 @@ pipeline {
         stage('OWASP Dependency Check') {
             steps {
                 withCredentials([string(credentialsId: 'nvd-api-key', variable: 'NVD_KEY')]){
-                    dependencyCheck additionalArguments: '--scan ./ --out ./ --format ALL --disableYarnAudit --prettyPrint --data /var/jenkins_home/odc-data --nvdApiKey $NVD_KEY', odcInstallation: 'OWASP-DepCheck-13'
-                    dependencyCheckPublisher pattern: 'dependency-check-report.xml', failedTotalCritical: 1, stopBuild: true
+                    dependencyCheck additionalArguments: '--scan package-lock.json --out reports --format XML --disableYarnAudit --prettyPrint --data /var/jenkins_home/odc-data --nvdApiKey $NVD_KEY', odcInstallation: 'OWASP-DepCheck-13'
+                    dependencyCheckPublisher pattern: 'reports/dependency-check-report.xml', failedTotalCritical: 1, stopBuild: true
                 }
             }
         }
@@ -71,7 +71,7 @@ pipeline {
                             $SONAR_SCANNER_HOME/bin/sonar-scanner \
                               -Dsonar.projectKey=Pokapi \
                               -Dsonar.sources=. \
-                              -Dsonar.exclusions=node_modules/**,coverage/**,dependency-check-*,trivy-* \
+                              -Dsonar.exclusions=node_modules/**,coverage/**,reports/**,dependency-check-*,trivy-* \
                               -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
                         '''
                     }
@@ -92,13 +92,14 @@ pipeline {
         stage('Trivy Scan') {
             steps {
                 sh '''
+                    mkdir -p reports
                     trivy image $IMAGE:$IMAGE_TAG \
                         --severity LOW,MEDIUM,HIGH --exit-code 0 --quiet \
-                        --format json -o trivy-image-MEDIUM-results.json
+                        --format json -o reports/trivy-image-MEDIUM-results.json
  
                     trivy image $IMAGE:$IMAGE_TAG \
                         --severity CRITICAL --ignore-unfixed --exit-code 1 --quiet \
-                        --format json -o trivy-image-CRITICAL-results.json
+                        --format json -o reports/trivy-image-CRITICAL-results.json
                 '''
             }
             post {
@@ -106,19 +107,31 @@ pipeline {
                     sh '''
                         trivy convert --format template \
                             --template "@/usr/local/share/trivy/templates/html.tpl" \
-                            --output trivy-image-MEDIUM-results.html trivy-image-MEDIUM-results.json || true
+                            --output reports/trivy-image-MEDIUM-results.html reports/trivy-image-MEDIUM-results.json || true
  
                         trivy convert --format template \
                             --template "@/usr/local/share/trivy/templates/html.tpl" \
-                            --output trivy-image-CRITICAL-results.html trivy-image-CRITICAL-results.json || true
+                            --output reports/trivy-image-CRITICAL-results.html reports/trivy-image-CRITICAL-results.json || true
                     '''
                     publishHTML([allowMissing: true, alwaysLinkToLastBuild: true, keepAll: true,
-                                 reportDir: './', reportFiles: 'trivy-image-CRITICAL-results.html',
+                                 reportDir: 'reports/', reportFiles: 'trivy-image-CRITICAL-results.html',
                                  reportName: 'Trivy Image Critical Vul Report', useWrapperFileDirectly: true])
                     publishHTML([allowMissing: true, alwaysLinkToLastBuild: true, keepAll: true,
-                                 reportDir: './', reportFiles: 'trivy-image-MEDIUM-results.html',
+                                 reportDir: 'reports/', reportFiles: 'trivy-image-MEDIUM-results.html',
                                  reportName: 'Trivy Image Medium Vul Report', useWrapperFileDirectly: true])
                 }
+            }
+        }
+
+        stage('Smoke Test') {
+            steps {
+                sh '''
+                    docker run -d --rm --name smoke-$IMAGE_TAG --network ci-net $IMAGE:$IMAGE_TAG
+                    trap "docker rm -f smoke-$IMAGE_TAG" EXIT
+                    sleep 5
+                    curl -fsS http://smoke-$IMAGE_TAG:8000/healthz
+                    curl -fsS http://smoke-$IMAGE_TAG:8000/api/cards -o /dev/null
+                '''
             }
         }
 
