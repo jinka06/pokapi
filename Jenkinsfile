@@ -125,14 +125,29 @@ pipeline {
 
         stage('Smoke Test') {
             steps {
-                sh '''
-                    docker run -d --rm --name smoke-$IMAGE_TAG --network ci-net $IMAGE:$IMAGE_TAG
-                    trap "docker rm -f smoke-$IMAGE_TAG" EXIT
-                    sleep 5
-                    curl -fsS http://smoke-$IMAGE_TAG:8000/healthz
-                    curl -fsS http://smoke-$IMAGE_TAG:8000/api/cards -o /dev/null
-                '''
+                sh 'mkdir -p reports'
+                withEnv(['K6_WEB_DASHBOARD=true', 'K6_WEB_DASHBOARD_EXPORT=reports/k6-report.html', 'K6_WEB_DASHBOARD_PORT=-1', 'K6_WEB_DASHBOARD_PERIOD=2s']){
+                    sh '''
+                        docker run -d --rm --name smoke-$IMAGE_TAG --network ci-net \
+                        -e RATE_LIMIT=100000 --read-only --tmpfs /tmp --user 1000:1000 --cap-drop ALL \
+                        $IMAGE:$IMAGE_TAG
+                        trap "docker rm -f smoke-$IMAGE_TAG" EXIT
+                        sleep 5
+                        curl -fsS http://smoke-$IMAGE_TAG:8000/healthz
+                        docker run --rm -i --network ci-net \
+                        -e BASE_URL=http://smoke-$IMAGE_TAG:8000 -e PROFILE=smoke \
+                        -e K6_WEB_DASHBOARD=true -e K6_WEB_DASHBOARD_EXPORT=/reports/k6-report.html \
+                        -e K6_WEB_DASHBOARD_PORT=-1 -e K6_WEB_DASHBOARD_PERIOD=2s -v "${WORKSPACE}/reports:/reports"
+                        grafana/k6 run - < loadtest.js
+                    '''
+                }
             }
+            post {
+                always {
+                    publishHTML([allowMissing: true, alwaysLinkToLastBuild: true, keepAll: true,
+                    reportDir: 'reports/', reportFiles: 'k6-report.html',
+                    reportName: 'k6 Performance Report', useWrapperFileDirectly: true])
+                }
         }
 
         stage('Docker Image Push') {
