@@ -148,6 +148,7 @@ pipeline {
                     reportDir: 'reports/', reportFiles: 'k6-report.html',
                     reportName: 'k6 Performance Report', useWrapperFileDirectly: true])
                 }
+            }
         }
 
         stage('Docker Image Push') {
