@@ -123,24 +123,29 @@ pipeline {
             }
         }
 
-        stage('Smoke Test') {
+        stage('k6 Performance Test') {
             steps {
                 sh 'mkdir -p reports'
-                withEnv(['K6_WEB_DASHBOARD=true', 'K6_WEB_DASHBOARD_EXPORT=reports/k6-report.html', 'K6_WEB_DASHBOARD_PORT=-1', 'K6_WEB_DASHBOARD_PERIOD=2s']){
-                    sh '''
-                        docker run -d --rm --name smoke-$IMAGE_TAG --network ci-net \
-                        -e RATE_LIMIT=100000 --read-only --tmpfs /tmp --user 1000:1000 --cap-drop ALL \
-                        $IMAGE:$IMAGE_TAG
-                        trap "docker rm -f smoke-$IMAGE_TAG" EXIT
-                        sleep 5
-                        curl -fsS http://smoke-$IMAGE_TAG:8000/healthz
-                        docker run --rm -i --network ci-net \
-                        -e BASE_URL=http://smoke-$IMAGE_TAG:8000 -e PROFILE=smoke \
-                        -e K6_WEB_DASHBOARD=true -e K6_WEB_DASHBOARD_EXPORT=/reports/k6-report.html \
-                        -e K6_WEB_DASHBOARD_PORT=-1 -e K6_WEB_DASHBOARD_PERIOD=2s -v "${WORKSPACE}/reports:/reports"
-                        grafana/k6 run - < loadtest.js
-                    '''
-                }
+                sh '''
+                    docker run -d --rm --name smoke-$IMAGE_TAG --network ci-net \
+                    -e RATE_LIMIT=100000 --read-only --tmpfs /tmp --user 1000:1000 --cap-drop ALL \
+                    $IMAGE:$IMAGE_TAG
+                    trap "docker rm -f smoke-$IMAGE_TAG k6-$IMAGE_TAG" EXIT
+                    sleep 5
+                    curl -fsS http://smoke-$IMAGE_TAG:8000/healthz
+
+                    docker run -i --name k6-$IMAGE_TAG --network ci-net \
+                    -e BASE_URL=http://smoke-$IMAGE_TAG:8000 -e PROFILE=smoke \
+                    -e K6_WEB_DASHBOARD=true \
+                    -e K6_WEB_DASHBOARD_EXPORT=/home/k6/k6-report.html \
+                    -e K6_WEB_DASHBOARD_PORT=-1 \
+                    -e K6_WEB_DASHBOARD_PERIOD=2s \
+                    grafana/k6 run - < loadtest.js || K6_STATUS=$?
+
+                    dockercp k6-$IMAGE_TAG:/home/k6/k6-report.html reports/k6-report.html || true
+                    exit ${K6_STATUS:-0}
+                '''
+                
             }
             post {
                 always {
