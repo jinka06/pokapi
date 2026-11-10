@@ -19,7 +19,7 @@ export default [
     },
   },
   {
-    files: ['tests/**/*.js'],
+    files: ['tests/**/*.js', 'loadtest.js'],
     languageOptions: {
       globals: {
         describe: 'readonly',
@@ -30,6 +30,7 @@ export default [
         beforeAll: 'readonly',
         afterAll: 'readonly',
         vi: 'readonly',
+        __ENV: 'readonly',
       },
     },
   },
