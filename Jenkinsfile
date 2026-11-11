@@ -135,7 +135,7 @@ pipeline {
                     curl -fsS http://smoke-$IMAGE_TAG:8000/healthz
 
                     docker run -i --name k6-$IMAGE_TAG --network ci-net \
-                    -e BASE_URL=http://smoke-$IMAGE_TAG:8000 -e PROFILE=smoke \
+                    -e BASE_URL=http://smoke-$IMAGE_TAG:8000 \
                     -e K6_WEB_DASHBOARD=true \
                     -e K6_WEB_DASHBOARD_EXPORT=/home/k6/k6-report.html \
                     -e K6_WEB_DASHBOARD_PORT=-1 \
