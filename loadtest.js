@@ -5,8 +5,8 @@ const BASE_URL = __ENV.BASE_URL;
 
 let stages = [
   { duration: '1m', target: 50 },
-  { duration: '3m', target: 200 },
-  { duration: '2m', target: 200 },
+  { duration: '5m', target: 500 },
+  { duration: '2m', target: 500 },
   { duration: '1m', target: 0 },
 ];
 
