@@ -151,8 +151,8 @@ pipeline {
                 always {
                     publishHTML([allowMissing: true, alwaysLinkToLastBuild: true, keepAll: true,
                     reportDir: 'performance-reports/', reportFiles: 'k6-report.html',
-                    reportName: 'k6 Performance Report', useWrapperFileDirectly: true, archiveArtifacts artifacts: 'performance-reports/k6-report.html',
-                    allowEmptyArchive: true])
+                    reportName: 'k6 Performance Report', useWrapperFileDirectly: true])
+                    archiveArtifacts artifacts: 'performance-reports/k6-report.html', allowEmptyArchive: true
                 }
             }
         }
