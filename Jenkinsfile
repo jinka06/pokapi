@@ -125,7 +125,7 @@ pipeline {
 
         stage('k6 Performance Test') {
             steps {
-                sh 'mkdir -p reports'
+                sh 'mkdir -p performance-reports'
                 sh '''
                     docker run -d --rm --name smoke-$IMAGE_TAG --network ci-net \
                     -e RATE_LIMIT=100000 --read-only --tmpfs /tmp --user 1000:1000 --cap-drop ALL \
@@ -142,7 +142,7 @@ pipeline {
                     -e K6_WEB_DASHBOARD_PERIOD=2s \
                     grafana/k6 run - < loadtest.js || K6_STATUS=$?
 
-                    dockercp k6-$IMAGE_TAG:/home/k6/k6-report.html reports/k6-report.html || true
+                    docker cp k6-$IMAGE_TAG:/home/k6/k6-report.html performance-reports/k6-report.html || true
                     exit ${K6_STATUS:-0}
                 '''
                 
@@ -150,7 +150,7 @@ pipeline {
             post {
                 always {
                     publishHTML([allowMissing: true, alwaysLinkToLastBuild: true, keepAll: true,
-                    reportDir: 'reports/', reportFiles: 'k6-report.html',
+                    reportDir: 'performance-reports/', reportFiles: 'k6-report.html',
                     reportName: 'k6 Performance Report', useWrapperFileDirectly: true])
                 }
             }
